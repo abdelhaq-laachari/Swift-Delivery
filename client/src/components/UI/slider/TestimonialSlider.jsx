@@ -25,7 +25,7 @@ const TestimonialSlider = () => {
           "I've been using SwiftDelivery for all of my personal deliveries, and
           I couldn't be happier with the service. The platform is easy to use,
           the drivers are always friendly and professional, and my packages
-          always arrive on time. Highly recommend!" - Mark, satisfied customer"
+          always arrive on time. Highly recommend!"
         </p>
         <div className=" slider__content d-flex align-items-center gap-3 ">
           <img src={ava01} alt="avatar" className=" rounded" />

@@ -79,20 +79,20 @@ const Footer = () => {
               <p className="m-0">Follow: </p>
               <span>
                 {" "}
-                <a href="https://medium.com/@abdelhaqlaachari" target="_blank">
+                <a href="https://medium.com/@abdelhaqlaachari" target="_blank" rel="noreferrer">
                   <i class="ri-medium-line"></i>
                 </a>{" "}
               </span>
 
               <span>
-                <a href="https://github.com/abdelhaq-laachari" target="_blank">
+                <a href="https://github.com/abdelhaq-laachari" target="_blank" rel="noreferrer">
                   <i class="ri-github-line"></i>
                 </a>
               </span>
 
               <span>
                 {" "}
-                <a href="https://abdelhaq-laachari.vercel.app/" target="_blank">
+                <a href="https://abdelhaq-laachari.vercel.app/" target="_blank" rel="noreferrer">
                   {/* portfolio icon */}
                   <i class="ri-user-3-line"></i>
                 </a>{" "}
@@ -100,7 +100,7 @@ const Footer = () => {
 
               <span>
                 {" "}
-                <a href="https://www.linkedin.com/in/abdelhaq-laachari" target="_blank">
+                <a href="https://www.linkedin.com/in/abdelhaq-laachari" target="_blank" rel="noreferrer">
                   <i class="ri-linkedin-line"></i>
                 </a>{" "}
               </span>

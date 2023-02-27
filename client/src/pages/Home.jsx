@@ -76,7 +76,7 @@ const Home = () => {
 
   return (
     <Helmet title="Home">
-      <section>
+      <section id="home">
         <Container>
           <Row>
             <Col lg="6" md="6">
@@ -134,7 +134,7 @@ const Home = () => {
         <Category />
       </section>
 
-      <section>
+      <section id="services">
         <Container>
           <Row>
             <Col lg="12" className="text-center">
@@ -170,7 +170,7 @@ const Home = () => {
         </Container>
       </section>
 
-      <section className="why__choose-us">
+      <section id="about" className="why__choose-us">
         <Container>
           <Row>
             <Col lg="6" md="6">
@@ -234,7 +234,7 @@ const Home = () => {
         </Container>
       </section>
 
-      <section className="pt-0">
+      <section id="partner" className="pt-0">
         <Container>
           <Row>
             <Col lg="12" className="text-center mb-5 ">
@@ -250,7 +250,7 @@ const Home = () => {
         </Container>
       </section>
 
-      <section>
+      <section id="review">
         <Container>
           <Row>
             <Col lg="6" md="6">
