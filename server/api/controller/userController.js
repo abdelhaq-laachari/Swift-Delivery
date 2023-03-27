@@ -1,6 +1,5 @@
 const asyncHandler = require("express-async-handler");
-const Admin = require("../models/adminModel");
-const Company = require("../models/userModel");
+const User = require("../models/userModel");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 
@@ -9,22 +8,22 @@ const bcrypt = require("bcryptjs");
 // @access  Public
 
 const register = asyncHandler(async (req, res) => {
-  const { name, email, password } = req.body;
+  const { firstName, lastName, email, password } = req.body;
 
   //   check if any of the fields are empty
-  if (!name || !email || !password) {
+  if (!firstName || !lastName || !email || !password) {
     res.status(400);
     throw new Error("Please fill in all fields");
   }
 
   //   check if the admin already exists
 
-  const adminExists = await Admin.findOne({
+  const userExists = await User.findOne({
     email: email.toLowerCase(),
   });
-  if (adminExists) {
+  if (userExists) {
     res.status(400);
-    throw new Error("User already exists");
+    throw new Error("Email already exists");
   }
 
   // hash the password
@@ -32,41 +31,37 @@ const register = asyncHandler(async (req, res) => {
   const hashedPassword = await bcrypt.hash(password, salt);
 
   // create admin
-  const admin = await Admin.create({
-    name,
+  const user = await User.create({
+    firstName,
+    lastName,
     email: email.toLowerCase(),
     password: hashedPassword,
-    token: generateToken(),
   });
 
   //   if admin created send success message
-  if (admin) {
+  if (user) {
     res.status(201).json({
-      token: generateToken(admin._id),
+      token: generateToken(user._id),
     });
   } else {
     res.status(400);
-    throw new Error("Incorrect email or password");
+    throw new Error("Something went wrong");
   }
 });
 
 // @desc    Auth user & get token
-// @route   POST /admin/login
+// @route   POST /api/admin/login
 // @access  Public
+
 const login = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
-  const admin = await Admin.findOne({
+  const user = await User.findOne({
     email: email.toLowerCase(),
   });
 
-  if (!admin) {
-    res.status(404);
-    throw new Error("Admin not found");
-  }
-
-  if (admin && (await bcrypt.compare(password, admin.password))) {
+  if (user && (await bcrypt.compare(password, user.password))) {
     res.json({
-      token: generateToken(admin._id),
+      token: generateToken(user._id),
     });
   } else {
     res.status(401);
@@ -74,23 +69,16 @@ const login = asyncHandler(async (req, res) => {
   }
 });
 
-// @desc    Get me
-// @route   GET /admin/me
+// @desc    Get all users
+// @route   GET /allUsers
 // @access  Private
 
-const getMe = asyncHandler(async (req, res) => {
-  const admin = await Admin.findById(req.admin.id);
-
-  if (admin) {
-    res.json({
-      _id: admin._id,
-      name: admin.name,
-      email: admin.email,
-    });
-  } else {
-    res.status(404);
-    throw new Error("Admin not found");
-  }
+const getAllUsers = asyncHandler(async (req, res) => {
+  const user = await User.find(
+    {},
+    { password: 0, token: 0, __v: 0, password2: 0 }
+  );
+  res.json(user);
 });
 
 // Generate JWT
@@ -103,5 +91,5 @@ const generateToken = (id) => {
 module.exports = {
   register,
   login,
-  getMe,
+  getAllUsers,
 };

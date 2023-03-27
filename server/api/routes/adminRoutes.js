@@ -1,22 +1,22 @@
 const express = require("express");
 const router = express.Router();
-const { register, login } = require("../controller/adminController");
-const { totalClients } = require("../controller/clientController");
-const { checkAdmin } = require("../middleware/checkAuth");
 
+// import middleware
+const { protect } = require("../middleware/authMiddleware");
+
+// import controller
+const {register, login, getMe} = require("../controller/adminController");
 
 // @desc    Register a new admin
-router.route("/register").post(register)
+router.route("/register").post(register);
 
-// @desc    Login admin
-router.route("/login").post(login)
+// @desc    Login a admin
+router.route("/login").post(login);
 
-// @desc    Check if admin is logged in
-router.route("/checkAuth").get(checkAdmin)
+// @desc    Get me
+router.route("/me").get(protect, getMe);
 
 
-// @desc    Get total clients
-router.route("/totalClients").get(totalClients);
 
 // export route file
 module.exports = router;

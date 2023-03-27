@@ -1,7 +1,6 @@
 import React, { useRef, useEffect } from "react";
 
 import { Container } from "reactstrap";
-// import logo from "../../assets/images/res-logo.png";
 import logo from "../../assets/images/logo.png";
 import { Link } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
@@ -41,38 +40,10 @@ const Header = () => {
           {/* ======= menu ======= */}
           <div className="navigation" ref={menuRef} onClick={toggleMenu}>
             <div className="menu d-flex align-items-center gap-5">
-              <HashLink
-                to="/#home"
-                className={(navClass) =>
-                  navClass.isActive ? "active__menu" : ""
-                }
-              >
-                Home
-              </HashLink>
-              <HashLink
-                to="/#services"
-                className={(navClass) =>
-                  navClass.isActive ? "active__menu" : ""
-                }
-              >
-                Services
-              </HashLink>
-              <HashLink
-                to="/#about"
-                className={(navClass) =>
-                  navClass.isActive ? "active__menu" : ""
-                }
-              >
-                About
-              </HashLink>
-              <HashLink
-                to="/#review"
-                className={(navClass) =>
-                  navClass.isActive ? "active__menu" : ""
-                }
-              >
-                Reviews
-              </HashLink>
+              <HashLink to="/#home">Home</HashLink>
+              <HashLink to="/#services">Services</HashLink>
+              <HashLink to="/#about">About</HashLink>
+              <HashLink to="/#review">Reviews</HashLink>
               {/* <HashLink
                 to="/contact"
                 className={(navClass) =>

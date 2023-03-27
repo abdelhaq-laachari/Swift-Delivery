@@ -93,7 +93,7 @@ const Footer = () => {
               <span>
                 {" "}
                 <a href="https://abdelhaq-laachari.vercel.app/" target="_blank" rel="noreferrer">
-                  {/* portfolio icon */}
+                  
                   <i className="ri-user-3-line"></i>
                 </a>{" "}
               </span>

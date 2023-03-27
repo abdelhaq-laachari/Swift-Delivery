@@ -21,14 +21,14 @@ const Login = () => {
             <Col lg="6" md="6" sm="12" className="m-auto">
               <form>
                 <div className="form-outline mb-4">
-                  <label className="form-label" for="form2Example1">
+                  <label className="form-label" htmlFor="form2Example1">
                     Email address
                   </label>
                   <input type="email" id="form2Example1" className="form-control" />
                 </div>
 
                 <div className="form-outline mb-4">
-                  <label className="form-label" for="form2Example2">
+                  <label className="form-label" htmlFor="form2Example2">
                     Password
                   </label>
                   <input
