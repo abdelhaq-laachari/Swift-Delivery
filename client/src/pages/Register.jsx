@@ -19,37 +19,47 @@ const Register = () => {
       <section>
         <Container>
           <Row>
-            <Col lg="6" md="6" sm="12" className="m-auto text-center">
-              <form className="form mb-5" onSubmit={submitHandler}>
-                <div className="form__group">
-                  <input
-                    type="text"
-                    placeholder="Full name"
-                    required
-                    ref={signupNameRef}
-                  />
+            <Col lg="6" md="6" sm="12" className="m-auto">
+              <form>
+                <div className="d-flex justify-content-between row">
+                  <div className="form-outline mb-4 col">
+                    <label className="form-label " for="form2Example1">
+                      First Name
+                    </label>
+                    <input type="name" className="form-control" />
+                  </div>
+                  <div className="form-outline mb-4 col">
+                    <label className="form-label " for="form2Example1">
+                      Last Name
+                    </label>
+                    <input type="name" className="form-control" />
+                  </div>
                 </div>
-                <div className="form__group">
-                  <input
-                    type="email"
-                    placeholder="Email"
-                    required
-                    ref={signupEmailRef}
-                  />
+                <div className="form-outline mb-4">
+                  <label className="form-label" for="form2Example1">
+                    Email address
+                  </label>
+                  <input type="email" id="form2Example1" className="form-control" />
                 </div>
-                <div className="form__group">
+                <div className="form-outline mb-4">
+                  <label className="form-label" for="form2Example2">
+                    Password
+                  </label>
                   <input
                     type="password"
-                    placeholder="Password"
-                    required
-                    ref={signupPasswordRef}
+                    id="form2Example2"
+                    className="form-control"
                   />
                 </div>
-                <button type="submit" className="addTOCart__btn">
-                  Sign Up
+
+                <button type="button" className="btn btn-danger btn-block mb-4">
+                  Sign up
                 </button>
               </form>
-              <Link to="/login">Already have an account? Login</Link>
+              <span className="gap-3">
+                Already have an account?
+                <Link to="/login">Login</Link>
+              </span>
             </Col>
           </Row>
         </Container>

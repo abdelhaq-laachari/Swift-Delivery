@@ -18,31 +18,34 @@ const Login = () => {
       <section>
         <Container>
           <Row>
-            <Col lg="6" md="6" sm="12" className="m-auto text-center">
-              <form className="form mb-5" onSubmit={submitHandler}>
-                <div className="form__group">
-                  <input
-                    type="email"
-                    placeholder="Email"
-                    required
-                    ref={loginNameRef}
-                  />
+            <Col lg="6" md="6" sm="12" className="m-auto">
+              <form>
+                <div className="form-outline mb-4">
+                  <label className="form-label" for="form2Example1">
+                    Email address
+                  </label>
+                  <input type="email" id="form2Example1" className="form-control" />
                 </div>
-                <div className="form__group">
+
+                <div className="form-outline mb-4">
+                  <label className="form-label" for="form2Example2">
+                    Password
+                  </label>
                   <input
                     type="password"
-                    placeholder="Password"
-                    required
-                    ref={loginPasswordRef}
+                    id="form2Example2"
+                    className="form-control"
                   />
                 </div>
-                <button type="submit" className="addTOCart__btn">
-                  Login
+
+                <button type="button" className="btn btn-danger btn-block mb-4">
+                  Sign in
                 </button>
               </form>
-              <Link to="/register">
-                Don't have an account? Create an account
-              </Link>
+              <span className="gap-3">
+                Don't have an account?
+                <Link to="/register">Create an account</Link>
+              </span>
             </Col>
           </Row>
         </Container>

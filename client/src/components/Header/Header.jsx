@@ -73,14 +73,14 @@ const Header = () => {
               >
                 Reviews
               </HashLink>
-              <HashLink
+              {/* <HashLink
                 to="/contact"
                 className={(navClass) =>
                   navClass.isActive ? "active__menu" : ""
                 }
               >
                 Contact
-              </HashLink>
+              </HashLink> */}
             </div>
           </div>
 
@@ -88,12 +88,12 @@ const Header = () => {
           <div className="nav__right d-flex align-items-center gap-4">
             <span className="user">
               <Link to="/login">
-                <i class="ri-user-line"></i>
+                <i className="ri-user-line"></i>
               </Link>
             </span>
 
             <span className="mobile__menu" onClick={toggleMenu}>
-              <i class="ri-menu-line"></i>
+              <i className="ri-menu-line"></i>
             </span>
           </div>
         </div>

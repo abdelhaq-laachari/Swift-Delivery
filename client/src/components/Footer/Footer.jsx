@@ -62,7 +62,7 @@ const Footer = () => {
             <div className="newsletter">
               <input type="email" placeholder="Enter your email" />
               <span>
-                <i class="ri-send-plane-line"></i>
+                <i className="ri-send-plane-line"></i>
               </span>
             </div>
           </Col>
@@ -80,13 +80,13 @@ const Footer = () => {
               <span>
                 {" "}
                 <a href="https://medium.com/@abdelhaqlaachari" target="_blank" rel="noreferrer">
-                  <i class="ri-medium-line"></i>
+                  <i className="ri-medium-line"></i>
                 </a>{" "}
               </span>
 
               <span>
                 <a href="https://github.com/abdelhaq-laachari" target="_blank" rel="noreferrer">
-                  <i class="ri-github-line"></i>
+                  <i className="ri-github-line"></i>
                 </a>
               </span>
 
@@ -94,14 +94,14 @@ const Footer = () => {
                 {" "}
                 <a href="https://abdelhaq-laachari.vercel.app/" target="_blank" rel="noreferrer">
                   {/* portfolio icon */}
-                  <i class="ri-user-3-line"></i>
+                  <i className="ri-user-3-line"></i>
                 </a>{" "}
               </span>
 
               <span>
                 {" "}
                 <a href="https://www.linkedin.com/in/abdelhaq-laachari" target="_blank" rel="noreferrer">
-                  <i class="ri-linkedin-line"></i>
+                  <i className="ri-linkedin-line"></i>
                 </a>{" "}
               </span>
             </div>
