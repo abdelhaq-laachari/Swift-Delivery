@@ -6,19 +6,15 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 
 const Register = () => {
-  const [formData, setFormData] = useState({
-    email: "",
-    password: "",
-    firstName: "",
-    lastName: "",
-  });
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-  const { email, password, firstName, lastName } = formData;
-
-  const registerFunction = (e) => {
+  const registerFunction = async (e) => {
     e.preventDefault();
     try {
-      const res = axios.post("/user/register", {
+      const res = await axios.post("/user/register", {
         email,
         password,
         firstName,
@@ -49,7 +45,7 @@ const Register = () => {
                       type="name"
                       className="form-control"
                       onChange={(e) => {
-                        setFormData({ ...formData, firstName: e.target.value });
+                        setFirstName(e.target.value);
                       }}
                     />
                   </div>
@@ -61,7 +57,7 @@ const Register = () => {
                       type="name"
                       className="form-control"
                       onChange={(e) => {
-                        setFormData({ ...formData, lastName: e.target.value });
+                        setLastName(e.target.value);
                       }}
                     />
                   </div>
@@ -75,7 +71,7 @@ const Register = () => {
                     id="form2Example1"
                     className="form-control"
                     onChange={(e) => {
-                      setFormData({ ...formData, email: e.target.value });
+                      setEmail(e.target.value);
                     }}
                   />
                 </div>
@@ -88,7 +84,7 @@ const Register = () => {
                     id="form2Example2"
                     className="form-control"
                     onChange={(e) => {
-                      setFormData({ ...formData, password: e.target.value });
+                      setPassword(e.target.value);
                     }}
                   />
                 </div>

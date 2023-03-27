@@ -1,15 +1,27 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import Helmet from "../components/Helmet/Helmet";
 import CommonSection from "../components/UI/common-section/CommonSection";
 import { Container, Row, Col } from "reactstrap";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 const Login = () => {
-  const loginNameRef = useRef();
-  const loginPasswordRef = useRef();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-  const submitHandler = (e) => {
+  const loginFunction = async (e) => {
     e.preventDefault();
+    try {
+      const res = await axios.post("/user/login", {
+        email,
+        password,
+      });
+      if (res.status === 200) {
+        console.log("User logged in successfully");
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -24,7 +36,14 @@ const Login = () => {
                   <label className="form-label" htmlFor="form2Example1">
                     Email address
                   </label>
-                  <input type="email" id="form2Example1" className="form-control" />
+                  <input
+                    type="email"
+                    id="form2Example1"
+                    className="form-control"
+                    onChange={(e) => {
+                      setEmail(e.target.value);
+                    }}
+                  />
                 </div>
 
                 <div className="form-outline mb-4">
@@ -35,10 +54,17 @@ const Login = () => {
                     type="password"
                     id="form2Example2"
                     className="form-control"
+                    onChange={(e) => {
+                      setPassword(e.target.value);
+                    }}
                   />
                 </div>
 
-                <button type="button" className="btn btn-danger btn-block mb-4">
+                <button
+                  type="button"
+                  className="btn btn-danger btn-block mb-4"
+                  onClick={loginFunction}
+                >
                   Sign in
                 </button>
               </form>
