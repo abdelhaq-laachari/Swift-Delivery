@@ -62,7 +62,7 @@ const Protect = () => {
   }
   if (isError) {
     toast.error("Not authorized");
-    navigate("/login");
+    // navigate("/login");
   }
 
   return <Outlet />;
