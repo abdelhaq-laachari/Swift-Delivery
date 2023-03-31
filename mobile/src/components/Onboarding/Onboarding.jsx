@@ -14,7 +14,7 @@ const OnboardingScreen = ({ navigation }) => {
             backgroundColor: "#fff",
             image: (
               <Image
-                source={require("../../../assets/onboarding/eat.png")}
+                source={require("../../../assets/onboarding/driver.png")}
                 className="w-72 h-72"
               />
             ),
@@ -26,7 +26,7 @@ const OnboardingScreen = ({ navigation }) => {
             backgroundColor: "#fff",
             image: (
               <Image
-                source={require("../../../assets/onboarding/eat.png")}
+                source={require("../../../assets/onboarding/quick.png")}
                 className="w-72 h-72"
               />
             ),
@@ -38,7 +38,7 @@ const OnboardingScreen = ({ navigation }) => {
             backgroundColor: "#fff",
             image: (
               <Image
-                source={require("../../../assets/onboarding/eat.png")}
+                source={require("../../../assets/onboarding/fast.png")}
                 className="w-72 h-72"
               />
             ),
