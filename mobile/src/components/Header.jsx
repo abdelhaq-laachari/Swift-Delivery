@@ -1,7 +1,7 @@
 import { View, Text, Image } from "react-native";
 import React from "react";
 
-const Header = () => {
+const Header = ({ subtitle }) => {
   return (
     <View className="flex justify-center w-full h-[170px]">
       {/* logo */}
@@ -18,7 +18,7 @@ const Header = () => {
       {/* subtitle */}
       <View className="flex items-center justify-center w-full ">
         <Text className="text-center text-sm font-semibold text-slate-500">
-          Please enter your information to create an account with SwiftDelivery
+          {subtitle}
         </Text>
       </View>
     </View>

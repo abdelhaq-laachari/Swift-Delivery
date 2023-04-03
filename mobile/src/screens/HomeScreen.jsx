@@ -1,3 +1,4 @@
+import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 
@@ -7,6 +8,7 @@ const HomeScreen = () => {
       <View style={styles.container}>
         <Text>HomeScreen</Text>
       </View>
+      <StatusBar style="auto" />
     </>
   );
 };

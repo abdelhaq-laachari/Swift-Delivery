@@ -15,11 +15,11 @@ const Navigation = () => {
     <TailwindProvider>
       <NavigationContainer>
         <Stack.Navigator>
-          {/* <Stack.Screen
+          <Stack.Screen
             name="Onboarding"
             component={Onboarding}
             options={{ headerShown: false }}
-          /> */}
+          />
           <Stack.Screen
             name="RegisterScreen"
             component={RegisterScreen}
