@@ -99,7 +99,7 @@ const Home = () => {
                   </button>
 
                   <button className="all__foods-btn">
-                    <Link to="/foods">Be a Rider</Link>
+                    <Link to="/login">Be a Rider</Link>
                   </button>
                 </div>
 
