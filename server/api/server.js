@@ -16,6 +16,7 @@ app.use(cors());
 
 app.use(cookieParser());
 
+app.use("/driver", require("./routes/driverRoutes"));
 app.use("/user", require("./routes/userRoutes"));
 app.use("/admin", require("./routes/adminRoutes"));
 

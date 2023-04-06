@@ -12,7 +12,7 @@ const Login = () => {
   const loginFunction = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("/user/login", {
+      const res = await axios.post("/driver/login", {
         email,
         password,
       });
