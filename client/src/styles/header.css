@@ -79,6 +79,25 @@
   box-shadow: 5px 5px 15px -5px #fde4e4;
 }
 
+.logout {
+  font-weight: 600;
+  font-size: 1.5rem;
+  color: #212245;
+  transition: 0.3s;
+}
+.logout:hover {
+  color: #df2020;
+}
+.login {
+  font-weight: 600;
+  font-size: 1.5rem;
+  color: #212245;
+  transition: 0.3s;
+}
+.login:hover {
+  color: #df2020;
+}
+
 @media only screen and (max-width: 992px) {
   .logo img {
     /* width: calc(100% - 70%); */

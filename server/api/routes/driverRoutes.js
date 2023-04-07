@@ -1,17 +1,21 @@
 const express = require("express");
 const router = express.Router();
+const { protect } = require("../middleware/authMiddleware");
 
 // import controller
-const {register, login, getAlldrivers} = require("../controller/driverController");
+const {register, login, getAlldrivers, getDriverProfile} = require("../controller/driverController");
 
-// @desc    Register a new user
+// @desc    Register a new driver
 router.route("/register").post(register);
 
-// @desc    Login a user
+// @desc    Login a driver
 router.route("/login").post(login);
 
-// @desc    Get all companies
+// @desc    Get all drivers
 router.route("/").get(getAlldrivers);
+
+// @desc    Get driver profile
+router.route("/profile").get(protect ,getDriverProfile);
 
 
 

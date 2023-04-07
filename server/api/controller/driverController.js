@@ -2,6 +2,7 @@ const asyncHandler = require("express-async-handler");
 const Driver = require("../models/driverModel");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
+const { findById } = require("../models/driverModel");
 
 // @desc    Register a new admin
 // @route   POST /admin/register
@@ -94,6 +95,21 @@ const login = asyncHandler(async (req, res) => {
   }
 });
 
+// @desc    Get driver profile
+// @route   GET /driver/profile
+// @access  Private
+
+const getDriverProfile = asyncHandler(async (req, res) => {
+  const userId = req.admin;
+
+  if (userId) {
+    res.json(userId);
+  } else {
+    res.status(404);
+    throw new Error("User not found");
+  }
+});
+
 // @desc    Get all users
 // @route   GET /allUsers
 // @access  Private
@@ -117,4 +133,5 @@ module.exports = {
   register,
   login,
   getAlldrivers,
+  getDriverProfile,
 };

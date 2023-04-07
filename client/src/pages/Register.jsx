@@ -4,6 +4,7 @@ import CommonSection from "../components/UI/common-section/CommonSection";
 import { Container, Row, Col } from "reactstrap";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import Cookies from "js-cookie";
 
 const Register = () => {
   const [formErrors, setFormErrors] = useState({});
@@ -45,7 +46,9 @@ const Register = () => {
           zipCode,
         });
         if (res.status === 201) {
+          Cookies.set("token", res.data.token);
           console.log("User registered successfully");
+          window.location.href = "/profile";
         }
       } catch (error) {
         console.log(error);
@@ -121,6 +124,9 @@ const Register = () => {
                         setFirstName(e.target.value);
                       }}
                     />
+                    {formErrors.firstName && (
+                      <div className="invalid-feedback">{formErrors.firstName}</div>
+                    )}
                   </div>
                   <div className="form-outline mb-4 col">
                     <label
@@ -144,6 +150,9 @@ const Register = () => {
                         setLastName(e.target.value);
                       }}
                     />
+                    {formErrors.lastName && (
+                      <div className="invalid-feedback">{formErrors.lastName}</div>
+                    )}
                   </div>
                 </div>
                 <div className="d-flex justify-content-between row">
@@ -169,6 +178,9 @@ const Register = () => {
                         setAddress(e.target.value);
                       }}
                     />
+                    {formErrors.address && (
+                      <div className="invalid-feedback">{formErrors.address}</div>
+                    )}
                   </div>
                   <div className="form-outline mb-4 col">
                     <label
@@ -192,6 +204,9 @@ const Register = () => {
                         setPhone(e.target.value);
                       }}
                     />
+                    {formErrors.phone && (
+                      <div className="invalid-feedback">{formErrors.phone}</div>
+                    )}
                   </div>
                 </div>
                 <div className="d-flex justify-content-between row">
@@ -217,6 +232,9 @@ const Register = () => {
                         setCountry(e.target.value);
                       }}
                     />
+                    {formErrors.country && (
+                      <div className="invalid-feedback">{formErrors.country}</div>
+                    )}
                   </div>
                   <div className="form-outline mb-4 col">
                     <label
@@ -240,6 +258,9 @@ const Register = () => {
                         setCity(e.target.value);
                       }}
                     />
+                    {formErrors.city && (
+                      <div className="invalid-feedback">{formErrors.city}</div>
+                    )}
                   </div>
                   <div className="form-outline mb-4 col">
                     <label
@@ -263,6 +284,9 @@ const Register = () => {
                         setZipCode(e.target.value);
                       }}
                     />
+                    {formErrors.zipCode && (
+                      <div className="invalid-feedback">{formErrors.firstName}</div>
+                    )}
                   </div>
                 </div>
                 <div className="form-outline mb-4">
@@ -286,6 +310,9 @@ const Register = () => {
                       setEmail(e.target.value);
                     }}
                   />
+                  {formErrors.email && (
+                    <div className="invalid-feedback">{formErrors.email}</div>
+                  )}
                 </div>
                 <div className="form-outline mb-4">
                   <label
@@ -310,6 +337,9 @@ const Register = () => {
                       setPassword(e.target.value);
                     }}
                   />
+                  {formErrors.password && (
+                    <div className="invalid-feedback">{formErrors.password}</div>
+                  )}
                 </div>
 
                 <button

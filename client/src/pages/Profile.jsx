@@ -1,8 +1,20 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "../styles/profile-page.css";
 import { TbEditCircle } from "react-icons/tb";
+import axios from "axios";
+import { config } from "../getToken";
 
 const Profile = () => {
+  const [profile, setProfile] = useState({});
+
+  useEffect(() => {
+    const getProfile = async () => {
+      const res = await axios.get("/driver/profile", config);
+      setProfile(res.data);
+    };
+    getProfile();
+  }, []);
+
   return (
     <>
       <div className="section_one">
@@ -19,9 +31,9 @@ const Profile = () => {
                 />
               </div>
               <div className="name_title">
-                <span className="name">Rafiqu Rahman</span>
+                <span className="name">{profile?.firstName} {profile?.lastName}</span>
                 <span className="job_title">Driver</span>
-                <span className="address">Safi,Morocco</span>
+                <span className="address">{profile?.city} {profile?.country} </span>
               </div>
             </div>
             <div className="right">
@@ -37,21 +49,21 @@ const Profile = () => {
               <div className="s_name">
                 <div className="first_name">
                   <span className="s_title">First Name</span>
-                  <span className="s_subt">Rafique</span>
+                  <span className="s_subt">{profile?.firstName}</span>
                 </div>
                 <div className="first_name">
                   <span className="s_title">Email Address</span>
-                  <span className="s_subt">rohane@email.com</span>
+                  <span className="s_subt">{profile?.email}</span>
                 </div>
               </div>
               <div className="s_email">
                 <div className="first_name">
                   <span className="s_title">Last Name</span>
-                  <span className="s_subt">Rohane</span>
+                  <span className="s_subt">{profile?.lastName}</span>
                 </div>
                 <div className="first_name">
                   <span className="s_title">Phone Number</span>
-                  <span className="s_subt">+212 3456789</span>
+                  <span className="s_subt">{profile?.phone}</span>
                 </div>
               </div>
             </div>
@@ -68,21 +80,21 @@ const Profile = () => {
               <div className="s_name">
                 <div className="first_name">
                   <span className="s_title">Country</span>
-                  <span className="s_subt">Morocco</span>
+                  <span className="s_subt">{profile?.country}</span>
                 </div>
                 <div className="first_name">
                   <span className="s_title">Postal Code</span>
-                  <span className="s_subt">46000</span>
+                  <span className="s_subt">{profile?.zipCode}</span>
                 </div>
               </div>
               <div className="s_email">
                 <div className="first_name">
                   <span className="s_title">Address</span>
-                  <span className="s_subt">123, Azib derai</span>
+                  <span className="s_subt">{profile?.address}</span>
                 </div>
                 <div className="first_name">
                   <span className="s_title">City</span>
-                  <span className="s_subt">Safi</span>
+                  <span className="s_subt">{profile?.city}</span>
                 </div>
               </div>
             </div>
