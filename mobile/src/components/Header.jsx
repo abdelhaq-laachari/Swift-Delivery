@@ -1,25 +1,16 @@
-import { View, Text, Image } from "react-native";
+import { View, Text } from "react-native";
 import React from "react";
+import { Ionicons } from '@expo/vector-icons';
 
-const Header = ({ subtitle }) => {
+const Header = () => {
   return (
-    <View className="flex justify-center w-full h-[170px]">
-      {/* logo */}
-      <View className="flex flex-row items-center justify-center w-full">
-        <Image
-          className="w-[60px] h-[60px]"
-          source={require("../../assets/images/logo.png")}
-        />
-        <View className="flex flex-row">
-          <Text className="text-4xl font-bold">Swift</Text>
-          <Text className="text-4xl font-bold text-red-600">Delivery</Text>
-        </View>
+    <View className="w-[90%] h-[70px] bg-[#F8F8F8] flex flex-row justify-between items-center px-4 rounded-xl shadow-2xl shadow-black ">
+      <View className="flex flex-row space-x-2">
+        <Text className=" text-lg font-bold ">Hello</Text>
+        <Text className=" text-lg font-bold text-red-600">Alex</Text>
       </View>
-      {/* subtitle */}
-      <View className="flex items-center justify-center w-full ">
-        <Text className="text-center text-sm font-semibold text-slate-500">
-          {subtitle}
-        </Text>
+      <View>
+        <Ionicons name="menu-outline" size={30} color="black" />
       </View>
     </View>
   );

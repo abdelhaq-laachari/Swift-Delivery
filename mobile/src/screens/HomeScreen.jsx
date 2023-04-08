@@ -1,25 +1,17 @@
 import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
+import Drivers from "../components/Drivers";
 
 const HomeScreen = () => {
   return (
     <>
-      <View style={styles.container}>
-        <Text>HomeScreen</Text>
+      <View className="w-[100%] h-screen bg-white">
+        <Drivers />
       </View>
       <StatusBar style="auto" />
     </>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
 
 export default HomeScreen;

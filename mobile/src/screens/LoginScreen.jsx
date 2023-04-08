@@ -8,7 +8,7 @@ import {
   View,
 } from "react-native";
 import { Ionicons, MaterialIcons } from "@expo/vector-icons";
-import Header from "../components/Header";
+import Logo from "../components/Logo";
 
 const LoginScreen = ({ navigation }) => {
   const [showPassword, setShowPassword] = useState(false);
@@ -19,7 +19,7 @@ const LoginScreen = ({ navigation }) => {
   return (
     <>
       <View className="bg-white flex w-full h-full items-center pt-9">
-        <Header subtitle=" Please enter your information to login with SwiftDelivery " />
+        <Logo subtitle=" Please enter your information to login with SwiftDelivery " />
         {/* all inputs field */}
         <View className="flex w-full h-[200px] justify-around items-center mb-5 ">
           {/* Email input */}

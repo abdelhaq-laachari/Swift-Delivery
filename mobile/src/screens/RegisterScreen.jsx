@@ -8,8 +8,8 @@ import {
   View,
 } from "react-native";
 import { Ionicons, MaterialIcons } from "@expo/vector-icons";
-import Header from "../components/Header";
 import { StatusBar } from "expo-status-bar";
+import Logo from "../components/Logo";
 
 const RegisterScreen = ({ navigation }) => {
   const [showPassword, setShowPassword] = useState(false);
@@ -21,7 +21,7 @@ const RegisterScreen = ({ navigation }) => {
   return (
     <>
       <View className="bg-white flex w-full h-full items-center pt-7">
-        <Header subtitle="Please enter your information to create an account with SwiftDelivery" />
+        <Logo subtitle="Please enter your information to create an account with SwiftDelivery" />
         {/* all inputs field */}
         <View className="flex w-full h-[250px] justify-around items-center mb-5 ">
           {/* full name input */}
