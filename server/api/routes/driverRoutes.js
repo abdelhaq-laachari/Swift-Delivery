@@ -12,7 +12,7 @@ router.route("/register").post(register);
 router.route("/login").post(login);
 
 // @desc    Get all drivers
-router.route("/").get(getAlldrivers);
+router.route("/getAll").get(getAlldrivers);
 
 // @desc    Get driver profile
 router.route("/profile").get(protect ,getDriverProfile);
