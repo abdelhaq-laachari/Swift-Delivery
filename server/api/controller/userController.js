@@ -80,6 +80,21 @@ const getAllUsers = asyncHandler(async (req, res) => {
   res.json(user);
 });
 
+// @desc    Get user profile
+// @route   GET /user/profile
+// @access  Private
+
+const getUserProfile = asyncHandler(async (req, res) => {
+  const user = await User.findById(req.user._id);
+
+  if (user) {
+    res.send(user);
+  } else {
+    res.status(404);
+    throw new Error("User not found");
+  }
+});
+
 // Generate JWT
 const generateToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET, {
@@ -91,4 +106,5 @@ module.exports = {
   register,
   login,
   getAllUsers,
+  getUserProfile,
 };

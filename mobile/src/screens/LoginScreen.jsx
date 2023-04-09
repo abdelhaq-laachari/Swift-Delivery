@@ -30,7 +30,8 @@ const LoginScreen = ({ navigation }) => {
     try {
       const res = await axios.post(`${apiUrl}/user/login`, formDate);
       const token = res.data.token;
-      console.log(token);
+      // clear async storage
+      await AsyncStorage.clear();
       // Store the token in local storage
       await AsyncStorage.setItem('token', token);
       // Navigate to the home screen
