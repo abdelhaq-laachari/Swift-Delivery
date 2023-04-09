@@ -2,7 +2,7 @@ const asyncHandler = require("express-async-handler");
 const Driver = require("../models/driverModel");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
-const { findById } = require("../models/driverModel");
+const { default: mongoose } = require("mongoose");
 
 // @desc    Register a new admin
 // @route   POST /admin/register
@@ -127,14 +127,18 @@ const getAlldrivers = asyncHandler(async (req, res) => {
 // @access  Private
 
 const getDriverById = asyncHandler(async (req, res) => {
-  const user = await Driver.findById(req.params.id).select(
-    "-password -token -__v -password2"
-  );
-  if (user) {
-    res.json(user);
+  const idDriver = req.params.id;
+  if (!mongoose.Types.ObjectId.isValid(idDriver)) {
+    res.status(404);
+    throw new Error("Invalid driver ID");
+  }
+  const driver = await Driver.findById(idDriver).select("-password -__v");
+
+  if (driver) {
+    res.send(driver);
   } else {
     res.status(404);
-    throw new Error("User not found");
+    throw new Error("Driver not found");
   }
 });
 
@@ -143,14 +147,13 @@ const getDriverById = asyncHandler(async (req, res) => {
 // @access  Private
 
 const searchDriverByCity = asyncHandler(async (req, res) => {
-  const user = await Driver.find({
-    city: req.params.city,
-  }).select("-password -token -__v -password2");
-  if (user) {
-    res.json(user);
+  const city = req.params.city;
+  const drivers = await Driver.find({ city }).select("-password  -__v");
+  if (drivers.length > 0) {
+    res.json(drivers);
   } else {
     res.status(404);
-    throw new Error("User not found");
+    throw new Error("Drivers not found");
   }
 });
 

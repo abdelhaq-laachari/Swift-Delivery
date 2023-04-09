@@ -59,9 +59,9 @@ const Drivers = () => {
         </View>
       </View>
       {
-        drivers.map((driver) => {
+        drivers.map((driver, index) => {
           return (
-            <View className="w-[90%] h-[100px] bg-white flex flex-row justify-between items-center border rounded-xl shadow-xl p-3 my-3">
+            <View key={index} className="w-[90%] h-[100px] bg-white flex flex-row justify-between items-center border rounded-xl shadow-xl p-3 my-3">
               <View className="flex flex-row items-center space-x-3">
                 <Image
                   className="w-[60px] h-[60px] rounded-full"
