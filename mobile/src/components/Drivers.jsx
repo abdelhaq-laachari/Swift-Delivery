@@ -18,20 +18,31 @@ const Drivers = () => {
   const [drivers, setDrivers] = useState([]);
   const apiUrl = Constants.manifest.extra.apiUrl;
 
-  useEffect( () => {
-    axios.get(`${apiUrl}/driver/getAll`)
-    .then((res) => {
-      setDrivers(res.data)
-    })
-    .catch((err) => {
-      console.log(err)
-    })
+  useEffect(() => {
+    axios
+      .get(`${apiUrl}/driver/getAll`)
+      .then((res) => {
+        setDrivers(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }, [apiUrl]);
-  console.log(drivers)
 
-  const handleSearch = () => {
-    // Handle search functionality here
+  const handleSearch = async () => {
+    try {
+      const res = await axios.get(`${apiUrl}/driver/search/${searchQuery}`);
+      console.log(res.data);
+      setDrivers(res.data);
+    } catch (error) {
+      if (error.response) {
+        setDrivers([]);
+      } else {
+        console.log(error.message);
+      }
+    }
   };
+
   return (
     <View className="w-[100%] h-full flex mt-9 space-y-6 items-center">
       <Header />
@@ -58,17 +69,22 @@ const Drivers = () => {
           </TouchableOpacity>
         </View>
       </View>
-      {
+      {drivers && drivers.length > 0 ? (
         drivers.map((driver, index) => {
           return (
-            <View key={index} className="w-[90%] h-[100px] bg-white flex flex-row justify-between items-center border rounded-xl shadow-xl p-3 my-3">
+            <View
+              key={index}
+              className="w-[90%] h-[100px] bg-white flex flex-row justify-between items-center border rounded-xl shadow-xl p-3 my-3"
+            >
               <View className="flex flex-row items-center space-x-3">
                 <Image
                   className="w-[60px] h-[60px] rounded-full"
                   source={require("../../assets/images/user.jpg")}
                 />
                 <View className="flex space-y-1">
-                  <Text className="font-bold">{driver.firstName} {driver.lastName}</Text>
+                  <Text className="font-bold">
+                    {driver.firstName} {driver.lastName}
+                  </Text>
                   <Text className="font-bold">{driver.phone}</Text>
                   <Text className="font-bold">{driver.address}</Text>
                 </View>
@@ -77,9 +93,11 @@ const Drivers = () => {
                 <Ionicons name="call-outline" size={24} color="green" />
               </View>
             </View>
-          )
+          );
         })
-      }
+      ) : (
+        <Text className="text-xl font-bold">No drivers found.</Text>
+      )}
     </View>
   );
 };

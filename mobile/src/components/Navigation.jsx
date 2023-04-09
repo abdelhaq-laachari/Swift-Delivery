@@ -6,16 +6,17 @@ import HomeScreen from "../screens/HomeScreen";
 import RegisterScreen from "../screens/RegisterScreen";
 import LoginScreen from "../screens/LoginScreen";
 import Onboarding from "./Onboarding/Onboarding";
+import Nav from "./Nav";
+import ProfileScreen from "../screens/ProfileScreen";
 
 const Stack = createStackNavigator();
 
 const Navigation = () => {
-
   return (
     <TailwindProvider>
       <NavigationContainer>
         <Stack.Navigator>
-          {/* <Stack.Screen
+          <Stack.Screen
             name="Onboarding"
             component={Onboarding}
             options={{ headerShown: false }}
@@ -29,10 +30,10 @@ const Navigation = () => {
             name="LoginScreen"
             component={LoginScreen}
             options={{ headerShown: false }}
-          /> */}
+          />
           <Stack.Screen
-            name="HomeScreen"
-            component={HomeScreen}
+            name="Nav"
+            component={Nav}
             options={{ headerShown: false }}
           />
         </Stack.Navigator>

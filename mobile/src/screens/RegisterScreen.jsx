@@ -10,9 +10,36 @@ import {
 import { Ionicons, MaterialIcons } from "@expo/vector-icons";
 import { StatusBar } from "expo-status-bar";
 import Logo from "../components/Logo";
+import axios from "axios";
+import Constants from "expo-constants";
 
 const RegisterScreen = ({ navigation }) => {
   const [showPassword, setShowPassword] = useState(false);
+  const [formDate, setFormData] = useState({
+    fullName: "",
+    email: "",
+    password: "",
+  });
+  const apiUrl = Constants.manifest.extra.apiUrl;
+
+  const { fullName, email, password } = formDate;
+
+  const onChange = (text, name) => {
+    setFormData({ ...formDate, [name]: text });
+  };
+
+  const registerFunction = async () => {
+    try {
+      const res = await axios.post(`${apiUrl}/user/register`, formDate);
+      console.log(res.data);
+    } catch (error) {
+      if (error.response.status === 400) {
+        alert("Email already exists");
+      } else {
+        console.log(error.message);
+      }
+    }
+  };
 
   const hidePassword = () => {
     setShowPassword(!showPassword);
@@ -33,6 +60,8 @@ const RegisterScreen = ({ navigation }) => {
               <TextInput
                 className="flex h-full items-center text-base font-semibold text-black"
                 placeholder="Full Name"
+                value={fullName}
+                onChangeText={(text) => onChange(text, "fullName")}
               />
             </View>
           </View>
@@ -45,6 +74,8 @@ const RegisterScreen = ({ navigation }) => {
               <TextInput
                 className="flex h-full items-center text-base font-semibold text-black"
                 placeholder="Email"
+                value={email}
+                onChangeText={(text) => onChange(text, "email")}
               />
             </View>
           </View>
@@ -58,6 +89,8 @@ const RegisterScreen = ({ navigation }) => {
                 className="flex h-full items-center text-base font-semibold text-black"
                 placeholder="Password"
                 secureTextEntry={!showPassword}
+                value={password}
+                onChangeText={(text) => onChange(text, "password")}
               />
             </View>
             <TouchableOpacity onPress={hidePassword}>
@@ -71,7 +104,7 @@ const RegisterScreen = ({ navigation }) => {
         </View>
         {/* register button */}
         <View className="flex bg-black items-center justify-center w-[60%] h-[60px] rounded-full  mt-5">
-          <TouchableOpacity>
+          <TouchableOpacity onPress={registerFunction}>
             <Text className="text-white font-semibold text-lg">Sign Up</Text>
           </TouchableOpacity>
         </View>

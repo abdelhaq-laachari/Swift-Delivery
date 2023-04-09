@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { StatusBar } from "expo-status-bar";
 import {
-  StyleSheet,
   Text,
   TextInput,
   TouchableOpacity,
@@ -9,9 +8,41 @@ import {
 } from "react-native";
 import { Ionicons, MaterialIcons } from "@expo/vector-icons";
 import Logo from "../components/Logo";
+import axios from "axios";
+import Constants from "expo-constants";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const LoginScreen = ({ navigation }) => {
   const [showPassword, setShowPassword] = useState(false);
+  const [formDate, setFormData] = useState({
+    email: "",
+    password: "",
+  });
+  const apiUrl = Constants.manifest.extra.apiUrl;
+
+  const { email, password } = formDate;
+  
+  const onChange = (text, name) => {
+    setFormData({ ...formDate, [name]: text });
+  };
+
+  const loginFunction = async () => {
+    try {
+      const res = await axios.post(`${apiUrl}/user/login`, formDate);
+      const token = res.data.token;
+      console.log(token);
+      // Store the token in local storage
+      await AsyncStorage.setItem('token', token);
+      // Navigate to the home screen
+      navigation.navigate('Nav');
+    } catch (error) {
+      if (error.response.status === 401) {
+        alert("Invalid credentials");
+      } else {
+        console.log(error.message);
+      }
+    }
+  };
 
   const hidePassword = () => {
     setShowPassword(!showPassword);
@@ -31,6 +62,7 @@ const LoginScreen = ({ navigation }) => {
               <TextInput
                 className="flex h-full items-center text-base font-semibold text-black"
                 placeholder="Email"
+                onChangeText={(text) => onChange(text, "email")}
               />
             </View>
           </View>
@@ -44,6 +76,7 @@ const LoginScreen = ({ navigation }) => {
                 className="flex h-full items-center text-base font-semibold text-black"
                 placeholder="Password"
                 secureTextEntry={!showPassword}
+                onChangeText={(text) => onChange(text, "password")}
               />
             </View>
             <TouchableOpacity onPress={hidePassword}>
@@ -57,7 +90,7 @@ const LoginScreen = ({ navigation }) => {
         </View>
         {/* register button */}
         <View className="flex bg-black items-center justify-center w-[60%] h-[60px] rounded-full  mt-5">
-          <TouchableOpacity>
+          <TouchableOpacity onPress={loginFunction}>
             <Text className="text-white font-semibold text-lg">Sign in</Text>
           </TouchableOpacity>
         </View>

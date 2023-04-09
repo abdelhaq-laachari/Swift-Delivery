@@ -8,10 +8,10 @@ const bcrypt = require("bcryptjs");
 // @access  Public
 
 const register = asyncHandler(async (req, res) => {
-  const { firstName, lastName, email, password } = req.body;
+  const { fullName, email, password } = req.body;
 
   //   check if any of the fields are empty
-  if (!firstName || !lastName || !email || !password) {
+  if (!fullName || !email || !password) {
     res.status(400);
     throw new Error("Please fill in all fields");
   }
@@ -32,8 +32,7 @@ const register = asyncHandler(async (req, res) => {
 
   // create admin
   const user = await User.create({
-    firstName,
-    lastName,
+    fullName,
     email: email.toLowerCase(),
     password: hashedPassword,
   });
