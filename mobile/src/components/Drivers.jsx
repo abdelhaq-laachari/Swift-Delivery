@@ -5,6 +5,7 @@ import {
   Text,
   StyleSheet,
   Image,
+  ScrollView,
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import Header from "./Header";
@@ -69,12 +70,13 @@ const Drivers = () => {
           </TouchableOpacity>
         </View>
       </View>
+      <ScrollView style={{ margineBottom: 80 }}>
       {drivers && drivers.length > 0 ? (
         drivers.map((driver, index) => {
           return (
             <View
               key={index}
-              className="w-[90%] h-[100px] bg-white flex flex-row justify-between items-center border rounded-xl shadow-xl p-3 my-3"
+              className="w-[85%] h-[100px] bg-white flex flex-row justify-between items-center border rounded-xl shadow-xl p-3 my-3"
             >
               <View className="flex flex-row items-center space-x-3">
                 <Image
@@ -98,6 +100,8 @@ const Drivers = () => {
       ) : (
         <Text className="text-xl font-bold">No drivers found.</Text>
       )}
+
+      </ScrollView>
     </View>
   );
 };
