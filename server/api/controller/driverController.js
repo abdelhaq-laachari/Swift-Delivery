@@ -122,6 +122,38 @@ const getAlldrivers = asyncHandler(async (req, res) => {
   res.json(user);
 });
 
+// @desc    Get user by ID
+// @route   GET /user/:id
+// @access  Private
+
+const getDriverById = asyncHandler(async (req, res) => {
+  const user = await Driver.findById(req.params.id).select(
+    "-password -token -__v -password2"
+  );
+  if (user) {
+    res.json(user);
+  } else {
+    res.status(404);
+    throw new Error("User not found");
+  }
+});
+
+// @desc    Search user by city
+// @route   GET /user/search/:city
+// @access  Private
+
+const searchDriverByCity = asyncHandler(async (req, res) => {
+  const user = await Driver.find({
+    city: req.params.city,
+  }).select("-password -token -__v -password2");
+  if (user) {
+    res.json(user);
+  } else {
+    res.status(404);
+    throw new Error("User not found");
+  }
+});
+
 // Generate JWT
 const generateToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET, {
@@ -134,4 +166,6 @@ module.exports = {
   login,
   getAlldrivers,
   getDriverProfile,
+  getDriverById,
+  searchDriverByCity,
 };
